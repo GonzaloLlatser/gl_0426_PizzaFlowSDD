@@ -1,0 +1,11 @@
+Revisa el dominio generado hasta ahora comparándolo contra el archivo docs/specs/PF-ORDER-001_order-management_v1.md.
+
+Quiero que detectes:
+- reglas faltantes
+- inconsistencias
+- nombres mejorables
+- posibles simplificaciones
+- posibles errores en las transiciones de estado
+
+No generes nuevas capas todavía.
+Solo haz una revisión crítica del dominio actual y propón mejoras concretas.

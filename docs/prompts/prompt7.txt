@@ -1,0 +1,15 @@
+Genera únicamente los puertos necesarios para la capa application.
+
+Necesito interfaces para persistencia y dependencias externas mínimas, por ejemplo:
+- OrderRepository
+- ProductRepository
+- CustomerRepository
+
+Condiciones:
+- solo interfaces
+- sin implementación
+- sin Spring Data todavía
+- nombres claros
+- métodos mínimos necesarios para soportar los casos de uso del spec
+
+Explícame para qué sirve cada puerto.

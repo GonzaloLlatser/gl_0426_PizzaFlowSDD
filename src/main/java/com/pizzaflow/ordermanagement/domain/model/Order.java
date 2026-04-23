@@ -1,12 +1,20 @@
 package com.pizzaflow.ordermanagement.domain.model;
 
+import com.pizzaflow.ordermanagement.domain.exception.CancelledOrderCannotTransitionException;
+import com.pizzaflow.ordermanagement.domain.exception.DeliveredOrderCannotBeCancelledException;
+import com.pizzaflow.ordermanagement.domain.exception.DuplicatePaymentNotAllowedException;
+import com.pizzaflow.ordermanagement.domain.exception.OnlyOrdersInPreparationCanBeMarkedReadyException;
+import com.pizzaflow.ordermanagement.domain.exception.OnlyReadyOrdersCanBeDeliveredException;
+import com.pizzaflow.ordermanagement.domain.exception.OrderCannotBeConfirmedWhenEmptyException;
+import com.pizzaflow.ordermanagement.domain.exception.OrderModificationNotAllowedAfterConfirmationException;
+import com.pizzaflow.ordermanagement.domain.exception.OrderMustBeConfirmedBeforePaymentException;
+import com.pizzaflow.ordermanagement.domain.exception.OrderMustBePaidBeforePreparationException;
 import com.pizzaflow.ordermanagement.domain.exception.OrderTotalMustMatchItemSubtotalSumException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class Order {
 
@@ -15,6 +23,7 @@ public class Order {
     private final List<OrderItem> items;
     private BigDecimal total;
     private OrderStatus status;
+    private String paymentReference;
 
     public Order(String id, Customer customer) {
         this.id = requireNonBlank(id, "Order id must not be blank.");
@@ -22,6 +31,7 @@ public class Order {
         this.items = new ArrayList<>();
         this.total = BigDecimal.ZERO;
         this.status = OrderStatus.CREATED;
+        this.paymentReference = null;
     }
 
     public String getId() {
@@ -44,11 +54,16 @@ public class Order {
         return status;
     }
 
+    public String getPaymentReference() {
+        return paymentReference;
+    }
+
     public boolean hasItems() {
         return !items.isEmpty();
     }
 
     public void addItem(Product product, int quantity) {
+        ensureOrderCanBeModified();
         OrderItem existingItem = findItemByProductId(product.getId());
         if (existingItem == null) {
             items.add(new OrderItem(product, quantity));
@@ -71,8 +86,68 @@ public class Order {
         this.total = calculatedTotal;
     }
 
-    public void updateStatus(OrderStatus status) {
-        this.status = Objects.requireNonNull(status, "Order status must not be null.");
+    public void confirm() {
+        ensureNotCancelled();
+        if (status != OrderStatus.CREATED) {
+            throw new OrderModificationNotAllowedAfterConfirmationException();
+        }
+        if (!hasItems()) {
+            throw new OrderCannotBeConfirmedWhenEmptyException();
+        }
+
+        recalculateTotal();
+        this.status = OrderStatus.CONFIRMED;
+    }
+
+    public void pay(String paymentReference) {
+        ensureNotCancelled();
+        if (status == OrderStatus.PAID) {
+            throw new DuplicatePaymentNotAllowedException();
+        }
+        if (status != OrderStatus.CONFIRMED) {
+            throw new OrderMustBeConfirmedBeforePaymentException();
+        }
+
+        this.paymentReference = requireNonBlank(paymentReference, "Payment reference must not be blank.");
+        this.status = OrderStatus.PAID;
+    }
+
+    public void startPreparation() {
+        ensureNotCancelled();
+        if (status != OrderStatus.PAID) {
+            throw new OrderMustBePaidBeforePreparationException();
+        }
+
+        this.status = OrderStatus.IN_PREPARATION;
+    }
+
+    public void markReady() {
+        ensureNotCancelled();
+        if (status != OrderStatus.IN_PREPARATION) {
+            throw new OnlyOrdersInPreparationCanBeMarkedReadyException();
+        }
+
+        this.status = OrderStatus.READY;
+    }
+
+    public void deliver() {
+        ensureNotCancelled();
+        if (status != OrderStatus.READY) {
+            throw new OnlyReadyOrdersCanBeDeliveredException();
+        }
+
+        this.status = OrderStatus.DELIVERED;
+    }
+
+    public void cancel() {
+        if (status == OrderStatus.DELIVERED) {
+            throw new DeliveredOrderCannotBeCancelledException();
+        }
+        if (status == OrderStatus.CANCELLED) {
+            throw new CancelledOrderCannotTransitionException();
+        }
+
+        this.status = OrderStatus.CANCELLED;
     }
 
     private OrderItem findItemByProductId(String productId) {
@@ -96,5 +171,18 @@ public class Order {
             throw new IllegalArgumentException("Customer must not be null.");
         }
         return customer;
+    }
+
+    private void ensureOrderCanBeModified() {
+        ensureNotCancelled();
+        if (status != OrderStatus.CREATED) {
+            throw new OrderModificationNotAllowedAfterConfirmationException();
+        }
+    }
+
+    private void ensureNotCancelled() {
+        if (status == OrderStatus.CANCELLED) {
+            throw new CancelledOrderCannotTransitionException();
+        }
     }
 }

@@ -1,0 +1,19 @@
+Ahora implementa únicamente en la clase Order las reglas de negocio del ciclo de vida definidas en el spec.
+
+Quiero estos métodos:
+- addItem(...)
+- confirm()
+- pay(...)
+- startPreparation()
+- markReady()
+- deliver()
+- cancel()
+
+Condiciones:
+- respeta estrictamente el spec
+- usa las excepciones de negocio ya creadas
+- no metas lógica de infraestructura
+- recalcula correctamente el total cuando corresponda
+- no uses framework
+
+Al final, explícame qué Functional Requirement y qué Business Rule cubre cada método.

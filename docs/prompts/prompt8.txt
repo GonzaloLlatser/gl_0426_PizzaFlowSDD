@@ -1,0 +1,21 @@
+Ahora genera la capa application con los casos de uso derivados del spec.
+
+Quiero estos casos de uso como clases separadas:
+- CreateOrderUseCase
+- AddItemToOrderUseCase
+- ConfirmOrderUseCase
+- PayOrderUseCase
+- StartPreparationUseCase
+- MarkOrderReadyUseCase
+- DeliverOrderUseCase
+- CancelOrderUseCase
+- GetOrderByIdUseCase
+
+Condiciones:
+- usa los puertos ya definidos
+- apóyate en el dominio para la lógica de negocio
+- no metas controllers
+- no metas JPA
+- cada caso de uso debe tener una responsabilidad clara
+
+Al final, relaciónalos con las Functional Requirements del spec.

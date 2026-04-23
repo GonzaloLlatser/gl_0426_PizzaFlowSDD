@@ -1,0 +1,16 @@
+Lee el archivo docs/specs/PF-ORDER-001_order-management_v1.md.
+
+Quiero construir este proyecto en Spring Boot paso a paso, siguiendo el spec.
+No quiero TDD por ahora.
+No quiero que generes toda la app de golpe.
+
+Primero necesito únicamente:
+1. resumen técnico del spec
+2. lista de entidades de dominio
+3. enums necesarios
+4. excepciones de negocio
+5. casos de uso derivados del spec
+6. estructura de paquetes sugerida
+
+No generes código todavía.
+Quiero primero el análisis y el mapeo del spec a piezas técnicas.

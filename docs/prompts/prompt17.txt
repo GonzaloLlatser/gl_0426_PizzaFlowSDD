@@ -1,0 +1,21 @@
+Quiero probar el flujo básico del pedido usando Postman.
+
+Genera ejemplos de requests HTTP para:
+
+1. crear pedido
+2. agregar item al pedido
+3. confirmar pedido
+4. pagar pedido
+5. iniciar preparación
+6. marcar listo
+7. entregar pedido
+
+Incluye:
+- endpoint
+- método HTTP
+- body JSON si aplica
+- orden correcto de ejecución
+
+Condiciones:
+- ejemplos simples
+- usar datos coherentes con los productos cargados en H2

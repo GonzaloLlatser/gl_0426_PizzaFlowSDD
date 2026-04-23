@@ -1,0 +1,17 @@
+Ahora quiero poblar la base de datos en memoria (H2) al arrancar la aplicación.
+
+Genera una solución simple para inicializar datos:
+
+- crear algunos Product (pizzas y bebidas)
+- crear al menos un Customer
+
+Puedes usar:
+- CommandLineRunner o DataLoader
+
+Condiciones:
+- no usar SQL scripts
+- usar Java simple
+- datos de ejemplo claros (pizza margarita, coca cola, etc.)
+- no sobrecomplicar
+
+Explícame qué datos se insertan al inicio.

@@ -1,0 +1,15 @@
+Ahora genera DTOs simples para la futura capa web.
+
+Quiero únicamente los DTOs necesarios para:
+- crear pedido
+- agregar item
+- pagar pedido
+- devolver pedido consultado
+
+Condiciones:
+- DTOs simples
+- sin controllers todavía
+- sin validaciones avanzadas todavía
+- solo lo necesario para exponer la funcionalidad del spec
+
+Explícame qué caso de uso utilizaría cada DTO.

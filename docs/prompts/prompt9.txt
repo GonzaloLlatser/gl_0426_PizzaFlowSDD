@@ -1,0 +1,11 @@
+Revisa la capa application generada hasta ahora.
+
+Quiero que compruebes:
+- si los casos de uso están demasiado acoplados
+- si falta alguno
+- si hay responsabilidades duplicadas
+- si alguna lógica debería vivir en Order en lugar de en los use cases
+- si la solución sigue siendo coherente con el spec
+
+No generes infraestructura todavía.
+Solo revisión y mejoras sugeridas.

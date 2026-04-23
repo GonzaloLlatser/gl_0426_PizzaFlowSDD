@@ -1,0 +1,11 @@
+Haz una revisión general del backend generado hasta ahora comparándolo con el spec docs/specs/PF-ORDER-001_order-management_v1.md.
+
+Quiero que me indiques:
+- qué partes del spec ya están cubiertas
+- qué partes aún faltan
+- posibles mejoras de diseño
+- riesgos técnicos
+- simplificaciones posibles
+
+No generes frontend todavía.
+Quiero una revisión técnica final del backend.

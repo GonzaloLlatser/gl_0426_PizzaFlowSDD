@@ -1,0 +1,23 @@
+Quiero que el proyecto PizzaFlow sea arrancable como aplicación Spring Boot real.
+
+Genera lo mínimo necesario:
+
+- pom.xml con dependencias básicas:
+  - spring-boot-starter-web
+  - spring-boot-starter-data-jpa
+  - h2 database
+
+- clase principal con @SpringBootApplication
+
+- archivo application.yml con:
+  - configuración H2 en memoria
+  - consola H2 activada
+  - JPA configurado con ddl-auto create-drop
+
+Condiciones:
+- solución simple
+- sin seguridad
+- sin Docker
+- sin configuraciones avanzadas
+
+Explícame cómo arrancar la app al final.

@@ -1,0 +1,18 @@
+Genera únicamente las clases de dominio:
+- Customer
+- Product
+- OrderItem
+- Order
+
+Condiciones:
+- no uses JPA
+- no uses Lombok por ahora
+- usa Java simple y claro
+- incluye atributos, constructores necesarios, getters y comportamiento básico
+- no generes todavía infraestructura
+- Order debe incluir items, total y status
+
+No implementes todavía toda la lógica de transiciones.
+Quiero primero las clases base bien definidas.
+
+Explícame al final qué representa cada clase dentro del spec.

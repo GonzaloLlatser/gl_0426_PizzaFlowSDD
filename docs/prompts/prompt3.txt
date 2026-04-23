@@ -1,0 +1,12 @@
+Genera únicamente la capa domain inicial con:
+- los enums necesarios
+- las excepciones de negocio necesarias
+
+Condiciones:
+- usa nombres claros
+- no uses JPA
+- no uses anotaciones de framework
+- mantén el código simple
+- cada excepción debe representar una regla de negocio o una transición inválida definida en el spec
+
+Explícame al final qué parte del spec cubre cada enum y cada excepción.

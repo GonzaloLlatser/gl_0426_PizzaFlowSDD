@@ -1,0 +1,11 @@
+Genera una estructura inicial simple para el proyecto Spring Boot basada en ese análisis.
+
+Quiero una arquitectura simple inspirada en clean architecture con estos paquetes base:
+- domain
+- application
+- infrastructure
+
+Dentro de ellos, crea una propuesta concreta de subpaquetes para este proyecto PizzaFlow.
+
+No generes todavía controllers, entidades JPA ni repositories de Spring Data.
+Solo quiero la estructura de paquetes y una explicación breve de para qué sirve cada paquete.

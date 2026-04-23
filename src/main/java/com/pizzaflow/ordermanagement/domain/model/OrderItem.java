@@ -23,6 +23,18 @@ public class OrderItem {
         this.subtotal = calculateSubtotal(unitPrice, quantity);
     }
 
+    public static OrderItem reconstitute(Product product, int quantity, BigDecimal unitPrice, BigDecimal subtotal) {
+        Product requiredProduct = requireProduct(product);
+        validateQuantity(quantity);
+        BigDecimal requiredUnitPrice = requireNonNegative(unitPrice, "Order item unit price must not be null or negative.");
+        BigDecimal requiredSubtotal = requireNonNegative(subtotal, "Order item subtotal must not be null or negative.");
+
+        OrderItem orderItem = new OrderItem(requiredProduct, quantity);
+        orderItem.unitPrice = requiredUnitPrice;
+        orderItem.subtotal = requiredSubtotal;
+        return orderItem;
+    }
+
     public Product getProduct() {
         return product;
     }
@@ -63,7 +75,7 @@ public class OrderItem {
         return calculatedSubtotal;
     }
 
-    private Product requireProduct(Product product) {
+    private static Product requireProduct(Product product) {
         if (product == null) {
             throw new IllegalArgumentException("Product must not be null.");
         }
@@ -76,10 +88,17 @@ public class OrderItem {
         }
     }
 
-    private void validateQuantity(int quantity) {
+    private static void validateQuantity(int quantity) {
         if (quantity <= 0) {
             throw new OrderItemQuantityMustBeGreaterThanZeroException();
         }
+    }
+
+    private static BigDecimal requireNonNegative(BigDecimal value, String message) {
+        if (value == null || value.signum() < 0) {
+            throw new IllegalArgumentException(message);
+        }
+        return value;
     }
 
     @Override

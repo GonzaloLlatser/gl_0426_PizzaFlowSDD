@@ -34,6 +34,22 @@ public class Order {
         this.paymentReference = null;
     }
 
+    public static Order reconstitute(
+            String id,
+            Customer customer,
+            List<OrderItem> items,
+            BigDecimal total,
+            OrderStatus status,
+            String paymentReference
+    ) {
+        Order order = new Order(id, customer);
+        order.items.addAll(requireItems(items));
+        order.total = requireNonNegative(total, "Order total must not be null or negative.");
+        order.status = requireStatus(status);
+        order.paymentReference = paymentReference;
+        return order;
+    }
+
     public String getId() {
         return id;
     }
@@ -171,6 +187,27 @@ public class Order {
             throw new IllegalArgumentException("Customer must not be null.");
         }
         return customer;
+    }
+
+    private static List<OrderItem> requireItems(List<OrderItem> items) {
+        if (items == null) {
+            throw new IllegalArgumentException("Order items must not be null.");
+        }
+        return items;
+    }
+
+    private static BigDecimal requireNonNegative(BigDecimal value, String message) {
+        if (value == null || value.signum() < 0) {
+            throw new IllegalArgumentException(message);
+        }
+        return value;
+    }
+
+    private static OrderStatus requireStatus(OrderStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("Order status must not be null.");
+        }
+        return status;
     }
 
     private void ensureOrderCanBeModified() {

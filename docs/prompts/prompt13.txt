@@ -1,0 +1,13 @@
+Genera una primera versión de la infraestructura de persistencia con JPA.
+
+Quiero:
+- entidades JPA necesarias
+- mapeo desde/hacia dominio
+- repositories de Spring Data necesarios
+- implementación de los puertos de application
+
+Condiciones:
+- mantén el dominio separado
+- no contamines las clases de dominio con anotaciones JPA
+- usa mappers si hace falta
+- solución simple y entendible

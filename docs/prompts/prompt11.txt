@@ -1,0 +1,15 @@
+Genera una primera versión de la capa web REST para PizzaFlow.
+
+Quiero:
+- un OrderController
+- endpoints claros y simples
+- mapeo hacia los casos de uso
+- ResponseEntity cuando tenga sentido
+
+Condiciones:
+- no generes todavía manejo global de errores
+- no generes seguridad
+- mantén el controller limpio, sin lógica de negocio
+- usa los DTOs creados antes
+
+Al final, lista los endpoints generados y qué acción del spec representa cada uno.

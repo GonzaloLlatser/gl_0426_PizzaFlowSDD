@@ -1,0 +1,12 @@
+Ahora genera un manejo global de errores para la capa web.
+
+Quiero:
+- un GlobalExceptionHandler
+- mapping claro de excepciones de negocio a respuestas HTTP
+- mensajes entendibles
+- código limpio y simple
+
+Condiciones:
+- usa las excepciones del dominio
+- no cambies la lógica de negocio
+- no añadas complejidad innecesaria
